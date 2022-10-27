@@ -1,0 +1,174 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#login-wrapper {
+  background: #3677b7;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#login-wrapper .login {
+  text-align: center;
+  background: #fff;
+  border-radius: 5px;
+}
+.login-content {
+}
+.login-content h2 {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  padding: 19px;
+}
+.login-content .input-area {
+  position: relative;
+}
+.login-content .input-area:nth-child(1) {
+  margin-top: 2%;
+}
+.login-content .input-area i {
+}
+.login-content .input-area input {
+  width: 92%;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 14px;
+  outline: none;
+}
+.login-content .input-area .icon {
+  position: absolute;
+  right: 6%;
+  font-size: 19px;
+  bottom: 23%;
+}
+.login-content .input-area .user {
+  font-size: 1.2rem;
+
+  position: absolute;
+
+  left: 2%;
+
+  bottom: 32%;
+}
+.login-content .input-area .lock {
+  font-size: 1.2rem;
+
+  position: absolute;
+
+  left: 2%;
+
+  bottom: 32%;
+}
+.login-content .forgot-pass {
+  display: block;
+  text-align: start;
+  margin-left: 2%;
+  text-decoration: none;
+  color: #918585;
+  font-size: 18px;
+  margin: 25px 12px;
+}
+.login-content button {
+  width: 96%;
+  background: #3677b7;
+  color: #fff;
+  font-size: 20px;
+  border: none;
+  padding: 6px 0px;
+  border-radius: 50px;
+  margin-bottom: 26px;
+}
+.login-content .new-member {
+  font-size: 18px;
+  color: #918585;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#login-wrapper {
+  background: #3677b7;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#login-wrapper .login {
+  text-align: center;
+  background: #fff;
+  border-radius: 5px;
+}
+.login-content {
+}
+.login-content h2 {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  padding: 19px;
+}
+.login-content .input-area {
+  position: relative;
+}
+.login-content .input-area:nth-child(1) {
+  margin-top: 2%;
+}
+.login-content .input-area i {
+}
+.login-content .input-area input {
+  width: 92%;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 14px;
+  outline: none;
+  font-size: 19px;
+}
+.login-content .input-area .icon {
+  position: absolute;
+  right: 6%;
+  cursor: pointer;
+  font-size: 19px;
+  bottom: 23%;
+}
+.login-content .input-area .user {
+  font-size: 1.2rem;
+
+  position: absolute;
+
+  left: 2%;
+
+  bottom: 32%;
+}
+.login-content .input-area .lock {
+  font-size: 1.2rem;
+
+  position: absolute;
+
+  left: 2%;
+
+  bottom: 32%;
+}
+.login-content .forgot-pass {
+  display: block;
+  text-align: start;
+  margin-left: 2%;
+  text-decoration: none;
+  color: #918585;
+  font-size: 18px;
+  margin: 25px 12px;
+}
+.login-content button {
+  width: 96%;
+  background: #3677b7;
+  color: #fff;
+  font-size: 20px;
+  border: none;
+  padding: 6px 0px;
+  border-radius: 50px;
+  margin-bottom: 26px;
+}
+.login-content .new-member {
+  font-size: 18px;
+  color: #918585;
+}
