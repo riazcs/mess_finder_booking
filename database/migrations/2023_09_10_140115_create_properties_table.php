@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('meals', function (Blueprint $table) {
+        Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->date('meal_date');
-            $table->unsignedBigInteger('mess_id');
-            $table->boolean('morning')->default(false)->nullable(); // Whether the meal is active or not
-            $table->boolean('noon')->default(false)->nullable(); // Whether the meal is active or not
-            $table->boolean('night')->default(false)->nullable(); // Whether the meal is active or not
+            $table->string('details');
+            $table->string('title');
+            $table->integer('floar');
+            $table->integer('seat');
+            $table->integer('price');
+            $table->integer('room');
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meals');
+        Schema::dropIfExists('properties');
     }
 };

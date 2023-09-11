@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
     Route::namespace('App\Http\Controllers')->group(function () {
-        Route::resource('meals', MealController::class);
         Route::resource('bookings', BookingController::class);
     });
 });
@@ -37,5 +36,6 @@ Route::namespace('App\Http\Controllers')->group(function () {
         Route::post('/profile/update', 'HomeController@profileUpdate')->name('profile.update');
         Route::get('/booking/{id}', 'BookingController@bookingMess')->name('booking');
         Route::post('review-store', 'ReviewRatingController@store')->name('review.store');
+        Route::resource('meals', MealController::class);
     });
 });

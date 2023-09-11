@@ -16,9 +16,14 @@
   <!-- Owl Carousel CSS files -->
   <link rel="stylesheet" href="{{ asset('website') }}/owl-used-files/owl.carousel.min.css">
   <link rel="stylesheet" href="{{ asset('website') }}/owl-used-files/owl.theme.default.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- css -->
   <link rel="stylesheet" href="{{ asset('website') }}/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
   <title>Rajshahi Home</title>
 </head>
 
@@ -41,9 +46,11 @@
         <li><a href="#contact-area">Contact</a></li>
         @if(auth()->user())
         <li><a href="{{ route('profile', auth()->user()->id)}}">Profile</a></li>
+        <li><a href="/meals">Meal</a></li>
         @endif
         <li style="margin-left:20px ;">
-          <form method="post" action="{{route('mess.search')}}">@csrf<input class="form-control pr-2" placeholder="Search by location" id="search" name="keyword" /></form>
+          <form method="post" action="{{route('mess.search')}}">@csrf<input class="form-control pr-2"
+              placeholder="Search by location" id="search" name="keyword" /></form>
         </li>
       </ul>
       <div class="icon menu-btn">
@@ -59,7 +66,8 @@
         <a href="tel: +8801787263273"><i class="fas fa-phone" aria-hidden="true"></i></a>
       </div>
       <div class="second-icon-wrapper">
-        <a href="https://www.facebook.com/profile.php?id=100004745926319" target="_blank"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100004745926319" target="_blank"><i class="fab fa-facebook"
+            aria-hidden="true"></i></a>
       </div>
       <div class="third-icon-wrapper">
         <i class="fas fa-comments" aria-hidden="true"></i>
@@ -121,7 +129,9 @@
   <script src="{{ asset('website') }}/bs5/js/bootstrap.min.js"></script>
   <script src="{{ asset('website') }}/js/app.js"></script>
   <script src="{{ asset('website') }}/owl-used-files/owl.carousel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <!-- AOS code -->
   <script>
     // AOS.init();

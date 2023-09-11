@@ -1,116 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-<style>
-    .rate {
-        float: left;
-        height: 46px;
-        padding: 0 10px;
-    }
-
-    .rate:not(:checked)>input {
-        position: absolute;
-        display: none;
-    }
-
-    .rate:not(:checked)>label {
-        float: right;
-        width: 1em;
-        overflow: hidden;
-        white-space: nowrap;
-        cursor: pointer;
-        font-size: 30px;
-        color: #ccc;
-    }
-
-    .rated:not(:checked)>label {
-        float: right;
-        width: 1em;
-        overflow: hidden;
-        white-space: nowrap;
-        cursor: pointer;
-        font-size: 30px;
-        color: #ccc;
-    }
-
-    .rate:not(:checked)>label:before {
-        content: '★ ';
-    }
-
-    .rate>input:checked~label {
-        color: #ffc700;
-    }
-
-    .rate:not(:checked)>label:hover,
-    .rate:not(:checked)>label:hover~label {
-        color: #deb217;
-    }
-
-    .rate>input:checked+label:hover,
-    .rate>input:checked+label:hover~label,
-    .rate>input:checked~label:hover,
-    .rate>input:checked~label:hover~label,
-    .rate>label:hover~input:checked~label {
-        color: #c59b08;
-    }
-
-    .star-rating-complete {
-        color: #c59b08;
-    }
-
-    .rating-container .form-control:hover,
-    .rating-container .form-control:focus {
-        background: #fff;
-        border: 1px solid #ced4da;
-    }
-
-    .rating-container textarea:focus,
-    .rating-container input:focus {
-        color: #000;
-    }
-
-    .rated {
-        float: left;
-        height: 46px;
-        padding: 0 10px;
-    }
-
-    .rated:not(:checked)>input {
-        position: absolute;
-        display: none;
-    }
-
-    .rated:not(:checked)>label {
-        float: right;
-        width: 1em;
-        overflow: hidden;
-        white-space: nowrap;
-        cursor: pointer;
-        font-size: 30px;
-        color: #ffc700;
-    }
-
-    .rated:not(:checked)>label:before {
-        content: '★ ';
-    }
-
-    .rated>input:checked~label {
-        color: #ffc700;
-    }
-
-    .rated:not(:checked)>label:hover,
-    .rated:not(:checked)>label:hover~label {
-        color: #deb217;
-    }
-
-    .rated>input:checked+label:hover,
-    .rated>input:checked+label:hover~label,
-    .rated>input:checked~label:hover,
-    .rated>input:checked~label:hover~label,
-    .rated>label:hover~input:checked~label {
-        color: #c59b08;
-    }
-</style>
 <!-- carousel start here -->
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
@@ -196,174 +86,163 @@
 </div>
 <!-- carousel end here -->
 <div class="container">
-    <div class="row justify-content-center mt-2">
-        <h2 class="mt-2">Mess Details</h2>
-        <div class="col-12">
-            <div class="card bg-light text-dark">
-                <img style="max-height: 200px;object-position: center;
-                        object-fit: cover;" class="card-img-top" src="{{ Voyager::image($mess->image) }}">
-                <div class="card-body">
-                    <strong class="card-title">{{ $mess->title }}</strong><br>
-                    <strong class="text-danger">{{ $mess->price }} ৳</strong>
-                    <p class="card-text">{{ $mess->details }}</p>
-                    <div style="font-size:12px;">
-                        <span class="bg-success p-1 text-light">Room : {{ $mess->room }}</span>
-                        <span class="bg-dark p-1 text-light"> Seat : {{ $mess->seat }}</span>
-                        <span class="bg-info p-1 text-dark">Floor : {{ $mess->floar }}</span>
-                        <a class="bg-danger p-1 text-light" href="{{ env('APP_URL') }}/chat/{{ $mess->user->id }}"><i
-                                class="fa-solid fa-comment-sms"></i></a>
-                        <button type="button" class="btn btn-sm btn-primary p-1 text-light float-right"
-                            data-bs-toggle="modal" data-bs-target="#bookingMess{{$mess->id}}">Booking Now</button>
-                        @if(Auth::user())
-                        <button type="button" class="btn btn-sm btn-success p-1 text-light float-right"
-                            data-bs-toggle="modal" data-bs-target="#addMeal{{$mess->id}}">Add
-                            Meal</button>
-                        @endif
+    <div class="row justify-content-center mt-5">
+        <h2 class="mt-5">Mess @if(Auth::user())
+            <button type="button" class="btn btn-sm btn-success p-1 text-light float-right" data-bs-toggle="modal"
+                data-bs-target="#addMeal">Add
+                Meal</button>
+            @endif
+        </h2>
+        <div class="modal fade" id="addMeal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Meal Add</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
-                        <button type="button" class="btn btn-sm btn-info p-1 text-light" style="text-align: end;"
-                            data-bs-toggle="modal" data-bs-target="#giveRating{{$mess->id}}">Give a review</button>
-                        <div class="modal fade" id="bookingMess{{$mess->id}}" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-md" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Booking mess</h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h5>For booking, Please payment this Bkash number. </h5>
-                                        <h2><b>Bkash Number: 0156666666</b></h2>
-                                        <form action="{{route('booking', $mess->id)}}" method="GET"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <input type="text" class="form-control" name="transaction"
-                                                placeholder="Give transaction id" />
-                                            <div class="button-area mt-3 float-right">
-                                                <input class="post-btn btn btn-success" type="submit"
-                                                    data-bs-dismiss="modal" value="Booking">
-                                            </div>
-                                        </form>
-                                    </div>
+                        <form action="{{route('meals.store')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="my-3">
+                                <label for="exampleFormControlInput1" class="form-label">Meal Date</label>
+                                <input type="date" class="form-control" name="meal_date" placeholder="Meal date" />
+                            </div>
+                            <div class="my-3">
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="morning"
+                                        value="1">
+                                    <label class="form-check-label" for="inlineCheckbox1">Morning</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="noon"
+                                        value="1">
+                                    <label class="form-check-label" for="inlineCheckbox2">Noon</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="night"
+                                        value="1">
+                                    <label class="form-check-label" for="inlineCheckbox3">Night</label>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal fade" id="addMeal{{$mess->id}}" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-md" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Meal Add</h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
 
-                                        <form action="{{route('meals.store')}}" method="POST"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="my-3">
-                                                <label for="exampleFormControlInput1" class="form-label">Meal Date</label>
-                                                <input type="date" class="form-control" name="meal_date"
-                                                    placeholder="Meal date" />
-                                            </div>
-                                            <div class="my-3">
-
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="morning"
-                                                        value="1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">Morning</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="noon"
-                                                        value="1">
-                                                    <label class="form-check-label" for="inlineCheckbox2">Noon</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="night"
-                                                        value="1">
-                                                    <label class="form-check-label" for="inlineCheckbox3">Night</label>
-                                                </div>
-                                            </div>
-                                            <input name="mess_id" type="hidden" value="{{ $mess->id}}"/>
-                                            <div class="button-area mt-3 float-right">
-                                                <input class="post-btn btn btn-success" type="submit"
-                                                    data-bs-dismiss="modal" value="Add">
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                            <div class="button-area mt-3 float-right">
+                                <input class="post-btn btn btn-success" type="submit" data-bs-dismiss="modal"
+                                    value="Add">
                             </div>
-                        </div>
-                        <div class="modal fade" id="giveRating{{$mess->id}}" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-md" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Give rating & review.</h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col mt-4">
-                                                    <form class="py-2 px-4" action="{{route('review.store')}}"
-                                                        style="box-shadow: 0 0 10px 0 #ddd;" method="POST"
-                                                        autocomplete="off">
-                                                        @csrf
-                                                        <h5 class="font-weight-bold ">Review</h5>
-                                                        <div class="form-group row">
-                                                            <input type="hidden" name="mess_id" value="{{ $mess->id }}">
-                                                            <div class="col">
-                                                                <div class="rate">
-                                                                    <input type="radio" id="star5" class="rate"
-                                                                        name="rating" value="5" />
-                                                                    <label for="star5" title="text">5 stars</label>
-                                                                    <input type="radio" checked id="star4" class="rate"
-                                                                        name="rating" value="4" />
-                                                                    <label for="star4" title="text">4 stars</label>
-                                                                    <input type="radio" id="star3" class="rate"
-                                                                        name="rating" value="3" />
-                                                                    <label for="star3" title="text">3 stars</label>
-                                                                    <input type="radio" id="star2" class="rate"
-                                                                        name="rating" value="2">
-                                                                    <label for="star2" title="text">2 stars</label>
-                                                                    <input type="radio" id="star1" class="rate"
-                                                                        name="rating" value="1" />
-                                                                    <label for="star1" title="text">1 star</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row mt-4">
-                                                            <div class="col">
-                                                                <textarea class="form-control" name="comment" rows="6 "
-                                                                    placeholder="Comment" maxlength="200"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="mt-3 text-right">
-                                                            <button class="btn btn-sm py-2 px-3 btn-info">Submit
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="table caption-top">
+            <caption>List of meals</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Sl No</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Morning</th>
+                    <th scope="col">Noon</th>
+                    <th scope="col">Night</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($meals as $meal)
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{$meal->meal_date}}</td>
+                    <td>{{$meal->morning == 1 ? "ON" : "OFF"}}</td>
+                    <td>{{$meal->noon ? "ON" : "OFF"}}</td>
+                    <td>{{$meal->night ? "ON" : "OFF"}}</td>
+                    <td> <a class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#updateMeal{{$meal->id}}"><i class="fa fa-pencil"></i></a></td>
+                    <div class="modal fade" id="updateMeal{{$meal->id}}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-md" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Meal Add</h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form action="{{route('meals.update', $meal->id)}}" method="PUT"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="my-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Meal Date</label>
+                                            <input type="date" class="form-control" name="meal_date"
+                                                placeholder="Meal date" value="{{ $meal->meal_date}}" />
+                                        </div>
+                                        <div class="my-3">
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
+                                                    name="morning" value="{{ $meal->morning}}" @if($meal->morning)
+                                                checked @endif>
+                                                <label class="form-check-label" for="inlineCheckbox1">Morning</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
+                                                    name="noon" value="{{ $meal->noon}}" @if($meal->noon)
+                                                checked @endif>
+                                                <label class="form-check-label" for="inlineCheckbox2">Noon</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
+                                                    name="night" value="{{ $meal->night}}" @if($meal->night)
+                                                checked @endif>
+                                                <label class="form-check-label" for="inlineCheckbox3">Night</label>
                                             </div>
                                         </div>
-                                    </div>
+
+                                        <div class="button-area mt-3 float-right">
+                                            <input class="post-btn btn btn-success" type="submit"
+                                                data-bs-dismiss="modal" value="Add">
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
-            </div>
-        </div>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
 
+<!-- About start here -->
+<div id="about-sec" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500" data-aos-duration="1500">
+    <div class="container">
+        <h1 class="text-center text-white p-3">About Me</h1>
+        <div class="row" id="about-child">
+            <div class="col-lg-6 col-xl-6 col-xxl-6 col-md-6 col-12 col-sm-12">
+                <h6>About Me</h6>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora mollitia facere id incidunt. Optio
+                    nihil quod esse inventore, veniam ipsa tempora illum, maxime nisi ratione neque dolor saepe nulla
+                    excepturi ex dolores facilis molestias. Neque illum beatae voluptatibus architecto, nam saepe
+                    molestias voluptatem ut nobis magnam hic autem harum sunt?</p>
+            </div>
+            <div class="col-lg-6 col-xl-6 col-xxl-6 col-md-6 col-12 col-sm-12">
+                <iframe src="https://www.youtube.com/embed/wSPOefDFgb4" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- About end here -->
 
 <!-- Mini carousel start here -->
 <div id="mini-carousel">
