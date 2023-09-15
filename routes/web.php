@@ -35,6 +35,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
         Route::get('/profile/{id}', 'HomeController@profile')->name('profile');
         Route::post('/profile/update', 'HomeController@profileUpdate')->name('profile.update');
         Route::get('/booking/{id}', 'BookingController@bookingMess')->name('booking');
+        Route::get('/confirm-cancel-booking/{id}', 'BookingController@confirmAndCancelMess')->name('booking');
         Route::post('review-store', 'ReviewRatingController@store')->name('review.store');
         Route::resource('meals', MealController::class);
     });

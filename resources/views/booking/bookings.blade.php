@@ -39,7 +39,9 @@
                 <td>{{ $booking->mess_name}}</td>
                 <td>{{$booking->user_name}}</td>
                 <td>{{ $booking->transaction_id}}</td>
-                <td><button class="btn btn-sm btn-success">Confirm</button></td>
+                <td>@if(!$booking->is_confirm)<a class="btn btn-sm btn-success" href="{{ url('confirm-cancel-booking', $booking->id)}}">Confirm</a>@else
+                    <a class="btn btn-sm btn-danger" href="{{ url('confirm-cancel-booking', $booking->id)}}">Cancel</a>
+                @endif</td>
             </tr>
             @endforeach
         </tbody>

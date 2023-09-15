@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('mess_name')->nullable();
             $table->string('user_name')->nullable();
             $table->string('transaction_id');
+            $table->boolean('is_confirm')->default(false);
             $table->timestamps();
         });
     }

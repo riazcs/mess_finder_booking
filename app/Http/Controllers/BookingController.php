@@ -101,4 +101,18 @@ class BookingController extends Controller
             return redirect('/login');
         }
     }
+
+
+    public function confirmAndCancelMess($messId)
+    {
+        $mess = Booking::findOrFail($messId);
+        if ($mess->is_confirm) {
+            $mess->is_confirm = 0;
+            $mess->update();
+        } else {
+            $mess->is_confirm = 1;
+            $mess->update();
+        }
+        return \back();
+    }
 }
