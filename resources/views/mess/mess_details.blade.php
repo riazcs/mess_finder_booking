@@ -212,9 +212,9 @@
                         <span class="bg-info p-1 text-dark">Floor : {{ $mess->floar }}</span>
                         <a class="bg-danger p-1 text-light" href="{{ env('APP_URL') }}/chat/{{ $mess->user->id }}"><i
                                 class="fa-solid fa-comment-sms"></i></a>
-                        <button type="button" class="btn btn-sm btn-primary p-1 text-light float-right"
-                            data-bs-toggle="modal" data-bs-target="#bookingMess{{$mess->id}}">Booking Now</button>
-                        @if(Auth::user())
+                        @if(!$booking)<button type="button" class="btn btn-sm btn-primary p-1 text-light float-right"
+                            data-bs-toggle="modal" data-bs-target="#bookingMess{{$mess->id}}">Booking Now</button>@endif
+                        @if(Auth::user() && ($booking->is_confirm))
                         <button type="button" class="btn btn-sm btn-success p-1 text-light float-right"
                             data-bs-toggle="modal" data-bs-target="#addMeal{{$mess->id}}">Add
                             Meal</button>

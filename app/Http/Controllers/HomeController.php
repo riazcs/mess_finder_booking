@@ -33,7 +33,11 @@ class HomeController extends Controller
     public function messDetails($id)
     {
         $mess = Property::findOrFail($id);
-        return view('mess.mess_details', compact(['mess']));
+        $booking = null;
+        if (\auth()->user()) {
+            $booking = Booking::where('mess_id', $mess->id)->where('user_id', \auth()->user()->id)->first();
+        }
+        return view('mess.mess_details', compact(['mess', 'booking']));
     }
 
     public function bookingMess(Request $request, $id)

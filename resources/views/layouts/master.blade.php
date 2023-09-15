@@ -43,6 +43,11 @@
         <li><a href="#property">Property</a></li>
         <li><a href="#about-sec">About</a></li>
         <li><a href="/post">Feed</a></li>
+        @if(auth()->user())
+        <li><a href="{{route('logout')}}" method="post">Logout</a></li>
+        @else
+        <li><a href="/login">Login</a></li>
+        @endif
         <li><a href="#contact-area">Contact</a></li>
         @if(auth()->user())
         <li><a href="{{ route('profile', auth()->user()->id)}}">Profile</a></li>

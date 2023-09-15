@@ -25,7 +25,7 @@ class MealController extends Controller
 
     public function store(Request $request)
     {
-        $bookingMess = Booking::where('user_id',  \auth()->user()->id)->first();
+        $bookingMess = Booking::where('user_id',  \auth()->user()->id)->where('is_confirm', 1)->first();
         $meal = new Meal();
         $meal->morning = $request->morning;
         $meal->noon = $request->noon;
