@@ -21,8 +21,11 @@ class User extends \TCG\Voyager\Models\User
         'name',
         'email',
         'password',
+        'user_type'
     ];
 
+    const messOwner = 1;
+    const renter = 2;
     /**
      * The attributes that should be hidden for serialization.
      *

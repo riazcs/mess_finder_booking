@@ -39,6 +39,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::get('/details/{id}', 'HomeController@messDetails')->name('mess_details');
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile/{id}', 'HomeController@profile')->name('profile');
+        Route::get('/profile_details/{id}', 'HomeController@profileDetails');
         Route::post('/profile/update', 'HomeController@profileUpdate')->name('profile.update');
         Route::get('/booking/{id}', 'BookingController@bookingMess')->name('booking');
         Route::get('/confirm-cancel-booking/{id}', 'BookingController@confirmAndCancelMess')->name('booking');

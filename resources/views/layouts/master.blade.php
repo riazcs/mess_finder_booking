@@ -43,11 +43,6 @@
         <li><a href="#property">Property</a></li>
         <li><a href="#about-sec">About</a></li>
         <li><a href="/post">Feed</a></li>
-        @if(auth()->user())
-        <li><a href="{{route('logout')}}" method="post">Logout</a></li>
-        @else
-        <li><a href="/login">Login</a></li>
-        @endif
         <li><a href="#contact-area">Contact</a></li>
         @if(auth()->user())
         <li><a href="{{ route('profile', auth()->user()->id)}}">Profile</a></li>
@@ -59,22 +54,27 @@
         @guest
         @if (Route::has('login'))
         <li class="nav-item">
-          <a  href="{{ route('login') }}">{{ __('Login') }}</a>
+          <a href="{{ route('login') }}">{{ __('Login') }}</a>
         </li>
         @endif
 
         @if (Route::has('register'))
         <li class="nav-item">
-          <a  href="{{ route('register') }}">{{ __('Register') }}</a>
+          <a href="{{ route('register') }}">{{ __('Register') }}</a>
+          or <a href="/login">Login</a>
         </li>
         @endif
         @else
         <li class="nav-item dropdown">
-          <a id="navbarDropdown" class=" dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+          <a id="navbarDropdown" class=" dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" v-pre>
             {{ Auth::user()->name }}
           </a>
 
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a href="{{url('profile_details',  auth()->user()->id)}}" class="text-primary" method="post">Profile
+              Details</a>
+
             <a class="dropdown-item text-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
               {{ __('Logout') }}

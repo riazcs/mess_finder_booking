@@ -53,6 +53,14 @@
                                     </span>
                                 @enderror
                             </div>
+
+                            <div class="input-area">
+                                <select class="form-select form-control" name="user_type" aria-label="Default select example">
+                                    <option selected>Select User Type</option>
+                                    <option value="1">Mess Owner</option>
+                                    <option value="2">Renter</option>
+                                  </select>
+                            </div>
                             <div class="input-area">
                                 <i class="fa fa-lock lock" aria-hidden="true"></i>
                                 

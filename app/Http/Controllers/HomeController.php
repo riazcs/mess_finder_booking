@@ -75,4 +75,9 @@ class HomeController extends Controller
         $user->save();
         return  redirect('/');
     }
+
+    public function profileDetails($id){
+        $profile = User::findOrFail($id);
+        return view('profile.profile_details', \compact('profile'));
+    }
 }
