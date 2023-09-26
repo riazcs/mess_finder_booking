@@ -210,7 +210,6 @@
                         <span class="bg-success p-1 text-light">Room : {{ $mess->room }}</span>
                         <span class="bg-dark p-1 text-light"> Seat : {{ $mess->seat }}</span>
                         <span class="bg-info p-1 text-dark">Floor : {{ $mess->floar }}</span>
-<<<<<<< HEAD
                         <a class="bg-danger p-1 text-light" href="{{ env('APP_URL') }}/chat/{{ $mess->user->id }}"><i
                                 class="fa-solid fa-comment-sms"></i></a>
                         @if(!$booking)<button type="button" class="btn btn-sm btn-primary p-1 text-light float-right"
@@ -225,12 +224,6 @@
                             data-bs-toggle="modal" data-bs-target="#giveRating{{$mess->id}}">Give a review</button>
                         <div class="modal fade" id="bookingMess{{$mess->id}}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-=======
-                     @if($mess->user)<a class="bg-danger p-1 text-light" href="{{ env('APP_URL') }}/chat/{{ $mess->user->id }}"><i class="fa-solid fa-comment-sms"></i></a>@endif
-                        <button type="button" class="btn btn-sm btn-primary p-1 text-light float-right" data-bs-toggle="modal" data-bs-target="#bookingMess{{$mess->id}}">Booking Now</button>
-                        <button type="button" class="btn btn-sm btn-info p-1 text-light" style="text-align: end;" data-bs-toggle="modal" data-bs-target="#giveRating{{$mess->id}}">Give a review</button>
-                        <div class="modal fade" id="bookingMess{{$mess->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
->>>>>>> c47edd2 (Update)
                             <div class="modal-dialog modal-md" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">

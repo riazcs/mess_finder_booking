@@ -51,7 +51,10 @@
         <li><a href="#contact-area">Contact</a></li>
         @if(auth()->user())
         <li><a href="{{ route('profile', auth()->user()->id)}}">Profile</a></li>
+        <?php $bookingMess = App\Models\Booking::where('user_id',  \auth()->user()->id)->where('is_confirm', 1)->first();?>
+        @if($bookingMess)
         <li><a href="/meals">Meal</a></li>
+        @endif
         @endif
         @guest
         @if (Route::has('login'))
@@ -101,12 +104,8 @@
         <a href="tel: +8801864339313"><i class="fas fa-phone" aria-hidden="true"></i></a>
       </div>
       <div class="second-icon-wrapper">
-<<<<<<< HEAD
         <a href="https://www.facebook.com/profile.php?id=100004745926319" target="_blank"><i class="fab fa-facebook"
             aria-hidden="true"></i></a>
-=======
-        <a href="https://www.facebook.com/ashissarkar.anonto/" target="_blank"><i class="fab fa-facebook" aria-hidden="true"></i></a>
->>>>>>> c47edd2 (Update)
       </div>
       <div class="third-icon-wrapper">
         <i class="fas fa-comments" aria-hidden="true"></i>

@@ -102,15 +102,6 @@ class BookingController extends Controller
         }
     }
 
-<<<<<<< HEAD
-=======
-    public function confirmBooking($id){
-        $booking = Booking::findOrFail($id);
-        if(!empty($booking)){
-            $booking->update(['is_booking = 1']);
-        }
-    }
->>>>>>> c47edd2 (Update)
 
     public function confirmAndCancelMess($messId)
     {
