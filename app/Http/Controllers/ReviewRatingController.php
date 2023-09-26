@@ -14,7 +14,8 @@ class ReviewRatingController extends Controller
      */
     public function index()
     {
-        //
+        $reviews = ReviewRating::get();
+        return view('review.reviews', compact('reviews'));
     }
 
     /**

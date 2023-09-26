@@ -19,6 +19,9 @@ class Property extends Model
         'seat',
         'floar',
         'price',
+        'location',
+        'updated_at',
+        'created_at'
     ];
     public function user()
     {

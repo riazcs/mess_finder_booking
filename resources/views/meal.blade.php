@@ -87,7 +87,11 @@
 <!-- carousel end here -->
 <div class="container">
     <div class="row justify-content-center mt-5">
+<<<<<<< HEAD
         <h2 class="mt-5">Mess @if(Auth::user())
+=======
+        <h2 class="mt-5">Mess @if(Auth::user() && $booking->is_confirm ==1)
+>>>>>>> c47edd2 (Update)
             <button type="button" class="btn btn-sm btn-success p-1 text-light float-right" data-bs-toggle="modal"
                 data-bs-target="#addMeal">Add
                 Meal</button>

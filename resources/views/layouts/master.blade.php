@@ -53,6 +53,36 @@
         <li><a href="{{ route('profile', auth()->user()->id)}}">Profile</a></li>
         <li><a href="/meals">Meal</a></li>
         @endif
+        @guest
+        @if (Route::has('login'))
+        <li class="nav-item">
+          <a  href="{{ route('login') }}">{{ __('Login') }}</a>
+        </li>
+        @endif
+
+        @if (Route::has('register'))
+        <li class="nav-item">
+          <a  href="{{ route('register') }}">{{ __('Register') }}</a>
+        </li>
+        @endif
+        @else
+        <li class="nav-item dropdown">
+          <a id="navbarDropdown" class=" dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->name }}
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item text-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
+          </div>
+        </li>
+        @endguest
         <li style="margin-left:20px ;">
           <form method="post" action="{{route('mess.search')}}">@csrf<input class="form-control pr-2"
               placeholder="Search by location" id="search" name="keyword" /></form>
@@ -68,11 +98,15 @@
   <div id="humburger">
     <div class="container">
       <div class="first-icon-wrapper">
-        <a href="tel: +8801787263273"><i class="fas fa-phone" aria-hidden="true"></i></a>
+        <a href="tel: +8801864339313"><i class="fas fa-phone" aria-hidden="true"></i></a>
       </div>
       <div class="second-icon-wrapper">
+<<<<<<< HEAD
         <a href="https://www.facebook.com/profile.php?id=100004745926319" target="_blank"><i class="fab fa-facebook"
             aria-hidden="true"></i></a>
+=======
+        <a href="https://www.facebook.com/ashissarkar.anonto/" target="_blank"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+>>>>>>> c47edd2 (Update)
       </div>
       <div class="third-icon-wrapper">
         <i class="fas fa-comments" aria-hidden="true"></i>

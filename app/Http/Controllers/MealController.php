@@ -13,7 +13,15 @@ class MealController extends Controller
     public function index()
     {
         $meals = Meal::where('user_id', \auth()->user()->id)->get();
+<<<<<<< HEAD
         return view('meal', \compact('meals'));
+=======
+        $booking = null;
+        if (\auth()->user()) {
+            $booking = Booking::where('is_confirm', 1)->where('user_id', \auth()->user()->id)->first();
+        }
+        return view('meal', \compact(['meals', 'booking']));
+>>>>>>> c47edd2 (Update)
     }
 
 

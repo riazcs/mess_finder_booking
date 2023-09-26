@@ -11,6 +11,7 @@ use App\Models\User;
 class Feed extends Model
 {
     use HasFactory;
+    protected $table = 'posts';
     protected $fillable = [
         'user_id',
         'details',
@@ -20,6 +21,5 @@ class Feed extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-       
     }
 }

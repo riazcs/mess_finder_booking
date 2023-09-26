@@ -50,7 +50,6 @@ class WebsiteController extends Controller
     }
     public function store(Request $request)
     {
-        
         $filename = null;
         if($request->file('image')){
             $file= $request->file('image');
@@ -68,7 +67,9 @@ class WebsiteController extends Controller
             'title' => $request->title,
             'price' => $request->price,
             'image' => $filename,
-            'location' => $request->Location
+            'location' => $request->location,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         return  redirect(route('home'));
 

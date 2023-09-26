@@ -16,7 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
     Route::namespace('App\Http\Controllers')->group(function () {
+<<<<<<< HEAD
+=======
+        // Route::resource('meals', MealController::class);
+>>>>>>> c47edd2 (Update)
         Route::resource('bookings', BookingController::class);
+        Route::resource('review-ratings', ReviewRatingController::class)->except(['store']);
+        Route::post('confirm-booking/{id}', 'BookingController@confirmBooking')->name('confirm.booking');
+        Route::get('properties', 'PropertyController@index');
+        Route::post('edit-property/{id}', 'PropertyController@update');
+        Route::get('delete-property/{id}', 'PropertyController@destroy');
     });
 });
 Auth::routes();
@@ -38,5 +47,10 @@ Route::namespace('App\Http\Controllers')->group(function () {
         Route::get('/confirm-cancel-booking/{id}', 'BookingController@confirmAndCancelMess')->name('booking');
         Route::post('review-store', 'ReviewRatingController@store')->name('review.store');
         Route::resource('meals', MealController::class);
+<<<<<<< HEAD
+=======
+        Route::get('/confirm-cancel-booking/{id}', 'BookingController@confirmAndCancelMess')->name('confirm_cancel_booking');
+        
+>>>>>>> c47edd2 (Update)
     });
 });

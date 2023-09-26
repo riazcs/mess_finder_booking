@@ -1,6 +1,127 @@
 @extends('layouts.master')
 
 @section('content')
+<style>
+    /*	Reset & General
+---------------------------------------------------------------------- */
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .tile {
+        width: 100%;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 2px 3px -1px rgba(151, 171, 187, 0.7);
+        float: left;
+        transform-style: preserve-3d;
+        margin: 10px 5px;
+
+    }
+
+
+    .banner-img {
+        padding: 5px 5px 0;
+    }
+
+    .banner-img img {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .dates {
+        border: 1px solid #ebeff2;
+        border-radius: 5px;
+        padding: 20px 0px;
+        margin: 10px 20px;
+        font-size: 16px;
+        color: #5aadef;
+        font-weight: 600;
+        overflow: auto;
+    }
+
+    .dates div {
+        float: left;
+        width: 50%;
+        text-align: center;
+        position: relative;
+    }
+
+    .dates strong,
+    .stats strong {
+        display: block;
+        color: #adb8c2;
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .dates span {
+        width: 1px;
+        height: 40px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: #ebeff2;
+    }
+
+    .stats {
+        border-top: 1px solid #ebeff2;
+        background: #f7f8fa;
+        overflow: auto;
+        padding: 15px 0;
+        font-size: 16px;
+        color: #59687f;
+        font-weight: 600;
+        border-radius: 0 0 5px 5px;
+    }
+
+    .stats div {
+        border-right: 1px solid #ebeff2;
+        width: 33.33333%;
+        float: left;
+        text-align: center
+    }
+
+    .stats div:nth-of-type(3) {
+        border: none;
+    }
+
+    div.footer {
+        text-align: right;
+        position: relative;
+        margin: 20px 5px;
+    }
+
+    div.footer a.Cbtn {
+        padding: 10px 25px;
+        background-color: #DADADA;
+        color: #666;
+        margin: 10px 2px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 3px;
+    }
+
+    div.footer a.Cbtn-primary {
+        background-color: #5AADF2;
+        color: #FFF;
+    }
+
+    div.footer a.Cbtn-primary:hover {
+        background-color: #7dbef5;
+    }
+
+    div.footer a.Cbtn-danger {
+        background-color: #fc5a5a;
+        color: #FFF;
+    }
+
+    div.footer a.Cbtn-danger:hover {
+        background-color: #fd7676;
+    }
+</style>
 <!-- carousel start here -->
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
@@ -82,33 +203,85 @@
 <div class="container">
     <div class="row justify-content-center mt-5">
         <h2 class="mt-5">Mess <a class="btn btn-dark text-light" href="{{route('add')}}">Add</a></h2>
-        @foreach ($properties as $item)
-        <div class="col-md-4">
+        {{-- <div class="col-md-4">
             <a href="{{route('mess_details', $item->id)}}">
-                <div class="card bg-light text-dark">
-                    <img style="max-height: 200px;object-position: center;
+        <div class="card bg-light text-dark">
+            <img style="max-height: 200px;object-position: center;
                         object-fit: cover;" class="card-img-top" src="{{ Voyager::image($item->image) }}">
-                    <div class="card-body">
-                        <strong class="card-title">{{ $item->title }}</strong><br>
-                        <strong class="text-danger">{{ $item->price }} ৳</strong>
-                        <p class="card-text">{{ $item->details }}</p>
-                        <div style="font-size:12px;">
-                            <span class="bg-success p-1 text-light">Room : {{ $item->room }}</span>
-                            <span class="bg-dark p-1 text-light"> Seat : {{ $item->seat }}</span>
-                            <span class="bg-info p-1 text-dark">Floor : {{ $item->floar }}</span>
-                            <a class="bg-danger p-1 text-light" href="{{ env('APP_URL') }}/chat/{{ $item->user->id }}"><i class="fa-solid fa-comment-sms"></i></a>
-                        </div>
-
-                    </div>
+            <div class="card-body">
+                <strong class="card-title">{{ $item->title }}</strong><br>
+                <strong class="text-danger">{{ $item->price }} ৳</strong>
+                <p class="card-text">{{ $item->details }}</p>
+                <div style="font-size:12px;">
+                    <span class="bg-success p-1 text-light">Room : {{ $item->room }}</span>
+                    <span class="bg-dark p-1 text-light"> Seat : {{ $item->seat }}</span>
+                    <span class="bg-info p-1 text-dark">Floor : {{ $item->floar }}</span>
+                    <a class="bg-danger p-1 text-light" href="{{ env('APP_URL') }}/chat/{{ $item->user->id }}"><i class="fa-solid fa-comment-sms"></i></a>
                 </div>
-            </a>
+
+            </div>
         </div>
-        @endforeach
+        </a>
+    </div> --}}
+    <div class="container">
+        <div class="row">
+            @foreach ($properties as $item)
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <a href="{{route('mess_details', $item->id)}}">
+                    <div class="tile">
+                        <div class="wrapper">
+                            <div class="header">{{$item->itle}}</div>
+
+                            <div class="banner-img">
+                                <img src="{{ Voyager::image($item->image) }}" alt="Image 1">
+                            </div>
+
+
+
+                            <div class="stats">
+
+                                <div>
+                                    <strong>Room:</strong> {{$item->room}}
+                                </div>
+
+                                <div>
+                                    <strong>Seat</strong> {{$item->seat}}
+                                </div>
+
+                                <div>
+                                    <strong>Floor</strong> {{$item->floar}}
+                                </div>
+                            </div>
+                            <div class="stats">
+
+                                <div>
+                                    <strong>Description:</strong> {{$item->details}}
+                                </div>
+
+                                <div>
+                                    <strong>Price</strong> {{$item->price}}
+                                </div>
+
+                                <div>
+                                    @if(  $item->user &&  $item->user->id)
+                                    <a class="bg-danger p-1 text-light" href="{{ env('APP_URL') }}/chat/{{ $item->user->id }}"><i class="fa-solid fa-comment-sms"></i></a>
+                                    <strong>Chat</strong>
+                                    @endif
+                                </div>
+                            </div> 
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+        </div>
     </div>
+</div>
 </div>
 
 <!-- About start here -->
-<div id="about-sec" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500" data-aos-duration="1500">
+<div id="about-sec" data-aos-easing="linear" data-aos-duration="1500" data-aos-duration="1500">
     <div class="container">
         <h1 class="text-center text-white p-3">About Me</h1>
         <div class="row" id="about-child">
@@ -120,7 +293,7 @@
                     molestias voluptatem ut nobis magnam hic autem harum sunt?</p>
             </div>
             <div class="col-lg-6 col-xl-6 col-xxl-6 col-md-6 col-12 col-sm-12">
-                <iframe src="https://www.youtube.com/embed/wSPOefDFgb4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="719" height="405" src="https://www.youtube.com/embed/ItCWePHa8Bs" title="Resolve code block problem as no such file or directory" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
 
 
@@ -133,7 +306,7 @@
 <div id="mini-carousel">
     <div class="container">
         <div class="row">
-            <div class="col-lg-5 col-xl-5 col-xl-5 col-xxl-5 col-md-5 col-12 col-sm-12" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="col-lg-5 col-xl-5 col-xl-5 col-xxl-5 col-md-5 col-12 col-sm-12" data-aos-duration="1000">
                 <div class="card">
                     <img src="{{ asset('website') }}/img/living-room-1835923__480.webp" class="card-img-top">
                     <div class="card-body">
@@ -144,7 +317,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-7 col-xl-7 col-xl-7 col-xxl-7 col-md-7 col-12 col-sm-12 mini-carousel" data-aos="zoom-in-up" data-aos-duration="1000">
+            <div class="col-lg-7 col-xl-7 col-xl-7 col-xxl-7 col-md-7 col-12 col-sm-12 mini-carousel" data-aos-duration="1000">
                 <marquee behavior="" direction="">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Ratione, explicabo architecto at cum vel rerum sint inventore suscipit fugiat laudantium.</marquee>
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">

@@ -34,12 +34,12 @@
                         </div>
                         <hr>
                         <div id="owner-info-post">
-                            <img src="{{ Voyager::image(auth::user()->avatar) }}">
-                            <p>{{ auth::user()->name }}</p>
+                            <img src="{{ Voyager::image(auth()->user()->avatar) }}">
+                            <p>{{ auth()->user()->name }}</p>
                         </div>
                         <form action="{{route('store-feed')}}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="number" value="{{ auth::user()->id }}" name="userid" hidden>
+                            <input type="number" value="{{ auth()->user()->id }}" name="userid" hidden>
                             <textarea required class="nor-input" placeholder="What's on your mind????" name="details" id="" cols="30" rows="10"></textarea>
                             <input class="nor-input"  type="file" name="image" id="">
                             <div class="button-area">
